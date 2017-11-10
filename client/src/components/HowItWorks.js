@@ -97,5 +97,5 @@ export default HowItWorks;
 //               </div>
 //             </Card>
 //           </Col>
-          
+
 //         </Row>
