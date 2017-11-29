@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import '../css/style.css';
 import { Layout, Menu, Steps, Icon } from 'antd';
-import TopicNav from './TopicNav';
-import TopicHeader from './TopicHeader';
+import DashboardNav from './DashboardNav';
+import DashboardHeader from './DashboardHeader';
 import TopVideos from './TopVideos';
 import { Radio } from 'antd';
 const RadioButton = Radio.Button;
@@ -11,7 +11,7 @@ const RadioGroup = Radio.Group;
 import Slider from 'react-slick';
 
 
-class TopicDashboard extends Component {
+class CategoryDashboard extends Component {
   render() {
     const settings = {
       dots: true,
@@ -20,9 +20,10 @@ class TopicDashboard extends Component {
       slidesToShow: 1,
       slidesToScroll: 1
     };
+
     return (
       <div>
-        <TopicHeader />
+        <DashboardHeader />
 
         <div className='topVideosContainer'>
           <Slider {...settings}>
@@ -52,10 +53,9 @@ class TopicDashboard extends Component {
           <TopVideos />
         </div>
 
-
       </div>
     );
   }
 }
 
-export default TopicDashboard;
+export default CategoryDashboard;

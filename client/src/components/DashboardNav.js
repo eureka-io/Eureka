@@ -51,15 +51,3 @@ const TopicNav = function() {
 }
 
 export default TopicNav;
-
-      //       <Menu
-      //   theme="dark"
-      //   mode="horizontal"
-      //   defaultSelectedKeys={['1']}
-      //   style={{ lineHeight: '64px' }}
-      // >
-
-      //   <Menu.Item key="1">Get Started</Menu.Item>
-      //   <Menu.Item key="2">How It Works</Menu.Item>
-      //   <Menu.Item key="3">Explore</Menu.Item>     
-      // </Menu>
