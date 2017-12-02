@@ -11,18 +11,8 @@ import icontech from '../images/iconTech.png';
 import colorex from '../images/colorex.png';
 
 
- class Header extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-    };
-  }
-
-  //functions here
-
-
-  render() {
-    return (
+const Header = function(props) {
+  return (
       <div className='getStartedContainer'>
       <img src={bluebulb} className='bulb'/>
         <div className='getStartedContainerTitle'>
@@ -34,17 +24,16 @@ import colorex from '../images/colorex.png';
         <div className='headerTopicsContainer'>
           <Row type="flex" justify="space-around">
           <div><Icon type="caret-left" className='arrow' /></div>
-          <Col span={5}><a href="#"><img src={icontech} className='headertopic' /></a></Col>
-          <Col span={5}><a href="#"><img src={iconsports} className='headertopic' /></a></Col>
-          <Col span={5}><a href="#"><img src={iconhobbies} className='headertopic' /></a></Col>
-          <Col span={5}><a href="#"><img src={iconhacks} className='headertopic' /></a></Col>
+          <Col span={5}><a href="#"><img src={icontech} className='headertopic' name='Technology' onClick={props.handleClick} /></a></Col>
+          <Col span={5}><a href="#"><img src={iconsports} className='headertopic' name='Sports' onClick={props.handleClick} /></a></Col>
+          <Col span={5}><a href="#"><img src={iconhobbies} className='headertopic' name='Hobbies' onClick={props.handleClick} /></a></Col>
+          <Col span={5}><a href="#"><img src={iconhacks} className='headertopic' name='Life Hacks' onClick={props.handleClick} /></a></Col>
           <div><Icon type="caret-right" className='arrow'/></div>
         </Row>
 
         </div>
       </div>
     )
-  }
 }
 
 export default Header;

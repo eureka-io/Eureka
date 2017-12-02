@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { Affix, Row, Col, Icon } from 'antd';
 
 
-const Signup = function() {
+const Signup = function(props) {
   return (
     <div className='signUpContainer'>
       <h1 className='title'><a name='explore'>Sign Up Today!</a></h1>
 
-      <form>
-      <input placeholder="username"></input>
-      <input placeholder="password"></input>
-      <button>Go!</button>
+      <form onSubmit={props.signup}>
+        <input placeholder="email"></input>
+        <input placeholder="password"></input>
+        <input type="submit" vaue="Sign Up" />
       </form>
 
 

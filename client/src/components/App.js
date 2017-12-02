@@ -15,16 +15,19 @@ class App extends React.Component {
     super();
     this.state = {
       currentPage: 'home',
-      loggedIn: false,
+      loggedIn: true,
       currentUser: 'guest',
       playlist: [], //playlist of videos; each video an object of -- needs thumbnails, urls, titles, descriptions, etc.
+      recentVideos: [],
 
       //for guest - current Video Info
-      currentTopic: "",
       currentCategory: "",
       currentVideoSource: '',
       currentVideoCode: '',
-      currentVideoInfo: {} //name, desc, etc.
+      currentVideoInfo: {}, //name, desc, etc.
+
+      //for users
+      bookmarkedVideos: []
 
     };
   
@@ -35,6 +38,12 @@ class App extends React.Component {
   this.goToAccount = this.goToAccount.bind(this);
   this.goToSubmitVideo = this.goToSubmitVideo.bind(this);
   this.logout = this.logout.bind(this);
+  this.signup = this.signup.bind(this);
+  this.login = this.login.bind(this);
+  this.getPlaylistByCategory = this.getPlaylistByCategory.bind(this);
+  this.handleClick = this.handleClick.bind(this);
+  this.nextVideo = this.nextVideo.bind(this);
+  this.playClickedVideo = this.playClickedVideo.bind(this);
   };
 
 
@@ -56,6 +65,9 @@ class App extends React.Component {
 
   goToDashboard() {
     this.setState({currentPage: 'dashboard'});
+    document.getElementById('nav').setAttribute("class", 'navDashboard');
+    document.getElementById('navLinks').setAttribute("class", 'navDashboard');
+    document.getElementById('navLinks2').setAttribute("class", 'navDashboard');
   }
 
   goToAccount() {
@@ -72,7 +84,12 @@ class App extends React.Component {
 * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 // post - send authentication info
-  signup() {
+  signup(event) {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    const email = data.get('email');
+    const password = data.get('password');
+
     axios.post('/signup', {
       params: {
         email: email,
@@ -87,11 +104,18 @@ class App extends React.Component {
         //NOW LOG IN.
         //this.getPlaylist()
         //this.getBookmarks()
+      } else {
+        alert("Unable to signup");
       }
     })
   }  
 
   login() {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    const email = data.get('email');
+    const password = data.get('password');
+
     axios.post('/login', {
       params: {
         email: email,
@@ -103,11 +127,14 @@ class App extends React.Component {
       if (response === "success") {
         this.setState({username: email});
         this.setState({loggedIn: true});
+        this.goToDashboard();
+      } else {
+        alert ("Log In Fail. Try Again.");
+        this.goToLogin();
       }
     })
   }
 
-// get - playlist for category for guest user
   getPlaylistByCategory(category) {
     axios.get('/getPlaylistByCategory', {
       params: {
@@ -115,7 +142,6 @@ class App extends React.Component {
       }
     })
     .then((response) => {
-      //add retrieved playlist to state
       var videos = response.data.items;
       this.setState({playlist: videos})
     })
@@ -123,6 +149,7 @@ class App extends React.Component {
       console.log(error);
     }) 
   }
+
 
 // // post - user submitted video
 //   addVideo(url, category, user) {
@@ -140,7 +167,6 @@ class App extends React.Component {
 
 // post - user submitted video
   addVideo(object) {
-
     axios.post('/addVideo', {
       params: {
         url: url,
@@ -242,6 +268,33 @@ class App extends React.Component {
 
   logout() {
     this.setState({loggedIn: false});
+    this.setState({currentUser: 'guest'});
+    this.goToHome();
+  }
+
+  //handle click of category buttons on home page
+  handleClick(event) {
+    console.log('clicked');
+    this.setState({currentCategory: event.target.name});
+    //this.getPlaylistByCategory(this.state.currentCategory);
+    this.goToDashboard();
+  }
+
+  nextVideo() {
+    console.log('main center button. next video to be changed');
+    //change state to next video in playlist
+    //add video to this.state.recentVideos
+  }
+
+  playClickedVideo() {
+    console.log('video clicked.');
+  }
+
+  handleHeartClick(event) {
+    console.log('heart Clicked');
+    document.getElementById('heartIcon').setAttribute("class", 'heartIconSelected');
+    //add current video to this.state.bookmarkedVideos
+
   }
 
 
@@ -253,16 +306,15 @@ class App extends React.Component {
   render() {
     var toBeRendered = () => {
       if (this.state.currentPage === 'home') {
-        return (<Home />)
+        return (<Home handleClick={this.handleClick}/>)
       }
       if (this.state.currentPage ==='login') {
-        return (<Login />)
+        return (<Login login={this.login} />)
       }
       if (this.state.currentPage ==='signup') {
-        return (<SignUp />)
-      }
+        return (<Signup signup={this.signup} />) }
       if(this.state.currentPage ==='dashboard') {
-        return (<Dashboard loggedIn={this.state.loggedIn}/>)
+        return (<Dashboard loggedIn={this.state.loggedIn} currentCategory={this.state.currentCategory} nextVideo={this.nextVideo} handleHeartClick={this.handleHeartClick} playClickedVideo={this.playClickedVideo}/>)
       }
       if(this.state.currentPage ==='account') {
         return (<Account />)
@@ -277,18 +329,13 @@ class App extends React.Component {
     return (
       <div className='App'>
         <div className='navbg'>
-          <Nav currentPage={this.state.currentPage} loggedIn={this.state.loggedIn} goToLogin={this.goToLogin} goToSignup={this.goToSignup} goToAccount = {this.goToAccount} logout = {this.logout} />
+          <Nav currentPage={this.state.currentPage} loggedIn={this.state.loggedIn} goToLogin={this.goToLogin} goToSignup={this.goToSignup} goToSubmitVideo={this.goToSubmitVideo} goToAccount={this.goToAccount} handleClick={this.handleClick} logout={this.logout} />
         </div>
 
         {toBeRendered()}
 
         <div className='footer'>
         Hello Footer stuff
-        </div>
-
-
-        <div>
-          <button onClick={this.goToSubmitVideo}>Click to change to submit video page?</button>
         </div>
 
 

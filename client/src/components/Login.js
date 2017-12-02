@@ -7,13 +7,11 @@ const Login = function() {
     <div className='logInContainer'>
       <h1 className='title'><a name='explore'>Log In!</a></h1>
 
-      <form>
-      <label htmlFor="username">Username:</label>
-        <input id="username" type="text" name="username"/>
-        <label htmlFor="password">Password:</label>
-        <input id="password" type="password" name="password"/>
-        <input type="submit" value="Log In"/>
-    </form>
+      <form onSubmit={props.login}>
+        <input placeholder="email"></input>
+        <input placeholder="password"></input>
+        <input type="submit" vaue="Log In" />
+      </form>
 
 
     </div>

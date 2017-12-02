@@ -1,4 +1,4 @@
-/*********************
+/********************
   Global
 **********************/
 
@@ -77,6 +77,12 @@ background: linear-gradient(90deg, #48ded4 0%, #a026bf 20%, #e82c75 60%, #FFC40E
 .bulbnav {
 	max-height: 35px;
 	display: inline-block;
+}
+
+.submitVideoButton {
+	color: black;
+	background-color: white;
+	padding: 5px 20px;
 }
 
 /*********************
@@ -289,13 +295,20 @@ background: linear-gradient(90deg, #48ded4 0%, #a026bf 20%, #e82c75 60%, #FFC40E
 
 
 /*********************
-  Topic Dashboard
+   Dashboard
 **********************/
 
-.topicNav {
+/*.topicNav {
 	box-shadow: 
 		0 5px 25px 5px rgba(0,0,0,0.5), 
 		0 1px black;
+}*/
+
+.navDashboard {
+  background-image: url('../images/whitebg.png');
+  transform: translateY(3px);
+  padding: 16px 20px;
+  color: black;
 }
 
 .topicDashboardHeader {
@@ -323,23 +336,26 @@ background: linear-gradient(90deg, #48ded4 0%, #a026bf 20%, #e82c75 60%, #FFC40E
 
 }
 
-.topicDashboardSubTitle {
+/*.topicDashboardSubTitle {
 	color: white;
 	font-size: 15px;
 	text-align: center;
-
 	padding-bottom: 25px;
 	margin-top: 15px;
-}
+}*/
 
 
 .videoContainer {
 	/*transform: translateY(-10px);*/
-	padding: 10px 30px;
+	margin-top: 4px;
+	background-color: black;
 
 }
 
 .videoContainerInner {
+	width: 92%;
+	margin: 0 auto;
+
 }
 
 .videoDisplay {
@@ -349,17 +365,41 @@ background: linear-gradient(90deg, #48ded4 0%, #a026bf 20%, #e82c75 60%, #FFC40E
 }
 
 .videoInfoBox {
-	width: 46%;
-	margin: 0 auto;
-	background-color: darkgray;
+	width: 70%;
+	margin: 18px auto;
 }
 
 .votingContainer {
 	text-align: center;
-	padding-bottom: 20px;
-	float: right;
+	padding: 10px;
+	background-color: white;
 }
 
+
+.votingIcon {
+	padding: 5px 15px;
+	color: gray;
+}
+
+.centerButton {
+	border-radius: 50%;
+	width: 70px;
+	height: 70px; 
+	background-color: red;
+	display: inline-block;
+}
+
+.bulbIcon {
+	color: black;
+}
+
+.votingIcon:hover {
+	color: black;
+}
+
+.heartIcon:hover, .heartIconSelected {
+	color: red;
+}
 .vidRecContainer {
 	min-height: 10vh;
 	color: white;
@@ -374,24 +414,71 @@ background: linear-gradient(90deg, #48ded4 0%, #a026bf 20%, #e82c75 60%, #FFC40E
 }
 
 .videoTitleContainer {
-	float: left;
+	/*float: left;*/
 }
+
 .videoTitle {
-  font-size: 20px;
+  font-size: 27px;
   font-weight: bold;
 }
+
+.videoStats {
+	color: black;
+	/*background-color: black;*/
+	width: 50%;
+	margin: 5px 0px;
+	padding: 8px 0px;
+}
+
+.videoStat {
+	margin-right: 10px;
+}
+
+.reportButton {
+	float: right;
+	padding-top: 10px;
+}
+
 .videoDesc {
 	font-size: 15px;
+	padding-top: 20px;
 }
 
-.arrowRight {
-	font-size: 50px;
-	float: right;
-	transform: translateY(235px);
+.recentlyWatchedVideos {
+	margin-left: 50px;
+	margin-bottom: 50px;
+	display: inline-block;
 }
 
-.arrowLeft {
-  font-size: 50px;
-  float: left;
-  transform: translateY(235px);
+.recentlyWatchedVideos h2 {
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+.recentVideo {
+	width: 95%;
+	margin-bottom: 12px;
+	display: inline-block;
+}
+
+.recentVideo img{
+	max-width: 35%;
+	float: left;
+	margin-right: 5px;
+}
+
+.recentVideoTitle {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.recentVideoCategory{
+	font-size: 12px;
+}
+
+
+.slick-next:before, .slick-prev:before {
+	font-size: 15px;
+	color: black;
+
 }

@@ -11,18 +11,10 @@ import lightbulb from '../images/lightbulb.png';
 import list from '../images/list.png';
 import Slider from 'react-slick';
 
-class Home extends React.Component {
-  constructor(props) {
-    super();
-    this.state = {
-
-    };
-  }
-
-  render() {
-    return (
+const Home = function(props) {
+  return (
       <div>
-        <HomeHeader />
+        <HomeHeader handleClick={props.handleClick}/>
         <TopVideos />
    
         <div className="howItWorksContainer">
@@ -83,7 +75,6 @@ class Home extends React.Component {
 
 
     )
-  }
 
 }        
 
