@@ -163,8 +163,6 @@ class App extends React.Component {
     const subcategory = null;
     const url = data.get('url');
 
-    console.log(email, category, subcategory, url);
-
     axios.post('/api/addVideo', {
       params: {
         email: email,
@@ -174,11 +172,12 @@ class App extends React.Component {
       }
     })
     .then((response) => {
-      console.log('RESPONSE:', response);
-      if (response.status === 200) {
+      if (response.data === "Valid video and saved") {
+          console.log('LOL')
         console.log('Successfully submitted video!')
         this.goToSubmitVideo(); 
-      } else if (response.status === 400) {
+      } else if (response.data === "Duration too long" || response.data === "Link not from valid provider") {
+        console.log('LOL')
         console.log("Video Submission Fail. Video Too long. Try Again.");
       }
     })

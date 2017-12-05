@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 module.exports = userSignIn = (req, res) => {
     let email = req.body.params.email;
     let password = req.body.params.password;
-
+    console.log(email + ' ' + password);
     // User.findOne({ email: email}, (err, data) => {
     //     if(err) {
     //         return err;
