@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NavWhite from './NavWhite';
-import Input from './UI/Input/Input';
+
 
 const Login = function(props) {
   return (
@@ -11,9 +11,12 @@ const Login = function(props) {
 
       <div className='logInContainer'>
         <h1 className='title'><a name='explore'>Log In!</a></h1>
+
         <form onSubmit={props.login}>
-          <Input inputType="input" placeholder="email" id="email" name="email"></Input>
-          <Input inputType="input" placeholder="password" id="password" name="password"></Input>
+          <input placeholder="email" id="email" name="email"></input>
+
+
+          <input placeholder="password" id="password" name="password"></input>
           <button className='logInButton' type="submit">Log In</button>
         </form>
       </div>

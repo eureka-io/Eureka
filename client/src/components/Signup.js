@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Layout, Menu, Dropdown, Icon, Anchor, Affix, Row, Col } from 'antd';
 import NavWhite from './NavWhite';
-import Input from './UI/Input/Input';
+
 
 const Signup = function(props) {
   return (
@@ -15,8 +15,8 @@ const Signup = function(props) {
         <h1 className='title'>Sign Up Today!</h1>
 
         <form onSubmit={props.signup}>
-          <Input inputType="input" placeholder="email" id="email" name="email"></Input>
-          <Input inputType="input" placeholder="password" id="password" name="password"></Input>
+          <input placeholder="email" id="email" name="email"></input>
+          <input placeholder="password" id="password" name="password"></input>
           <button className='signUpButton' type="submit">Sign Up</button>
         </form>
       </div>
