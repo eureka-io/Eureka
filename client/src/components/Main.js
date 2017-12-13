@@ -11,7 +11,7 @@ import Account from './Account/Account'
 const Main = () => (
   <main>
     <Switch>
-      <Route exact path='/' component={Home}/>
+      <Route path='/' exact component={Home}/>
       <Route path='/dashboard' component={Dashboard}/>
       <Route path='/submitvideo' component={SubmitVideo}/>
       <Route path='/login' component={Login}/>
@@ -19,6 +19,6 @@ const Main = () => (
       <Route path='/account' component={Account}/>
     </Switch>
   </main>
-)
+);
 
 export default Main;

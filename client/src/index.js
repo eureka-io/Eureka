@@ -1,6 +1,5 @@
-import React from 'react'
+import React from 'react';
 import ReactDOM from 'react-dom';
-import { render } from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import App from './components/App';
 
@@ -18,13 +17,18 @@ import createHistory from 'history/createBrowserHistory';
 //Route is pretty self explanatory
 import { Route } from 'react-router';
 
+
 //special redux and router components needed
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
-
 import { composeWithDevTools } from 'redux-devtools-extension';
 
+const historyB = createHistory();
 
-
+// const app = (
+//     <BrowserRouter history={historyB}>
+//
+//     </BrowserRouter>
+// );
 const history = createHistory();
 const middleware = routerMiddleware(history);
 const reducers = combineReducers({
@@ -35,45 +39,12 @@ const reducers = combineReducers({
 const store = createStore(
 reducers,
   composeWithDevTools(applyMiddleware(middleware)));
-
-// import { LocaleProvider } from 'antd';
-// import enUS from 'antd/lib/locale-provider/en_US';
-
-
-
-//   <div className="primary-layout">
-//      <main>
-//       <Route path="/" exact component={App} />
-//       <Route path="/dashboard" component={TopicDashboard} />
-//       <Route path="/myaccount" component={AccountDashboard} />
-//       <Route path="/login" component={Login} />
-//     </main>
-//   </div>
-// )
-
-
-// const ToBeRendered = () => (
-//   <LocaleProvider locale={enUS}>
-//     <BrowserRouter>
-//       <PrimaryLayout />
-//     </BrowserRouter>
-//   </LocaleProvider>
-
-// )
-
 ReactDOM.render(
-
     <Provider store={store}>
       <ConnectedRouter history={history}>
-        <App />
+          <App />
       </ConnectedRouter>
     </Provider>
+  , document.getElementById('app')
+);
 
-  , document.getElementById('app'));
-// =======
-// render((
-//   <BrowserRouter>
-//     <App />
-//   </BrowserRouter>
-// ), document.getElementById('app'));
-// >>>>>>> master
