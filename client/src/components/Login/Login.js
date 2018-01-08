@@ -21,10 +21,10 @@ class Login extends React.Component {
   parseData = (data) => {
     let parsedSubcat = this.parseSubcategories(data.subcategory);
     console.log('PARSING DATA');
-    console.log(parsedSubcat);
     let parsedObj = {
       category: data.category,
-      subcategories: parsedSubcat };
+      subcategories: parsedSubcat,
+      bookmarks: data.bookmarks };
     return parsedObj;
   }
 
@@ -54,12 +54,19 @@ class Login extends React.Component {
 
         if (response.status === 200) { //successfully logged in current user
         console.log(JSON.stringify(response));
-          let parsedData = this.parseData(response.data);
-          console.log(parsedData);
+        console.log('DAAAAAAAAAAAAAAATAAAAAAA', response.data);
 
-          this.props.setLoggedInStatus(true);
-          this.props.setCurrentUser(email);
+          if (response.data !== 'OK') {
+            let parsedData = this.parseData(response.data);
+            console.log(parsedData);
+            this.props.setLoggedInStatus(true);
+            this.props.setCurrentUser(email);
+          }
+
+
           this.props.setUserPreferences(parsedData);
+          this.props.setUserBookmarks(parsedData.bookmarks);
+
           console.log('LOGGGGGGGGED INNNNNNNNNNNNN', this.props);
           this.props.history.push("/");
         } else if (response.status === 201) { //logged in new user

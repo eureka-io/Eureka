@@ -38,11 +38,17 @@ class Account extends React.Component {
 
   setPreferencesUI() {
     let preferences = this.state.totalCategories;
+    let userPreferences = this.props.userPreferences.subcategories;
     let preferUI = {};
     for(var categories in preferences){
         preferUI[categories] = {};
       preferences[categories].forEach((subcat)=>{
-        preferUI[categories][subcat] = true;
+        if(userPreferences.includes(subcat)){
+          preferUI[categories][subcat] = true;
+        } else {
+          preferUI[categories][subcat] = false;
+        }
+
       });
     }
     this.setState({preferencesUI: preferUI });
@@ -100,9 +106,8 @@ class Account extends React.Component {
     this.setState({preferencesUI: preferUI});
   }
 
-  updatedCategories(user){
-    let x = 0;
-    //axios.post()
+  updatedCategories(){
+    console.log('UPDATING PREFERENCES');
   }
 
 
@@ -121,6 +126,7 @@ class Account extends React.Component {
               categoriesKeys={this.state.categories}
               clicked={this.handleClickCategories.bind(this)}
               preferUI={this.state.preferencesUI}
+              updatePreferences={this.updatedCategories.bind(this)}
               />
           </TabPane>
 

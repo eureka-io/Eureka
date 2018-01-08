@@ -10,7 +10,7 @@ const AccountCategories = (props) => {
           <div className="accountInner">
           <h3>This is the Account Categories</h3>
           <h3> Click categories below to update your MindFeed</h3>
-
+            <button onClick={props.updatePreferences} className='formButton '> Update Your Favorite Categories! </button>
             <div>
               <Tabs tabPosition="left">
                 {

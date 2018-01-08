@@ -20,9 +20,13 @@ module.exports = userSignIn = (req, res) => {
                         res.status(201).send({email:email});
                     } else {
                       req.session.email = email;
-                      let userData = user.categoryPreference;
-
-                      console.log(userData);
+                      let userData = {};
+                       userData.category = user.categoryPreference.category;
+                       userData.subcategory = user.categoryPreference.subcategory;
+                       //userData.bookmarks = user.bookmarks;
+                       //TEST
+                       let testArr = [1,2,3,4];
+                       userData.bookmarks = testArr;
                       res.status(200).send(userData).end();
                         console.log('Authentication successful!');
                     }
