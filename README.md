@@ -26,7 +26,7 @@ Feed your mind, 5 minutes at a time.
 
 > npm start
 
-> localhost: 8000
+> localhost: 3000
 
 > client/src/components: all components
 
